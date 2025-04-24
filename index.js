@@ -14,6 +14,11 @@ app.use('/books', booksRoute);
 mongoose
   .connect(mongoDBURL)
   .then(() => {
+
+    mongoose.connection.on('connected', () => {
+      console.log(`✅ Connected to MongoDB database: ${mongoose.connection.client.s.options.dbName}`);
+    });
+
     const port = process.env.PORT || PORT;
     console.log('App connected to database');
     app.listen(port, '0.0.0.0', () => {
