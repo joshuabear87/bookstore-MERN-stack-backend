@@ -3,7 +3,12 @@ import { Book } from '../models/bookModel.js';
 
 const router = express.Router();
 
-// Create a new book
+// ✅ Wake-up route for cold-start handling (e.g. Render)
+router.get('/ping', (req, res) => {
+  res.status(200).json({ message: 'Server is awake' });
+});
+
+// ✅ Create a new book
 router.post('/', async (req, res) => {
   try {
     const { title, author, publishYear } = req.body;
@@ -23,11 +28,10 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all books
+// ✅ Get all books
 router.get('/', async (req, res) => {
   try {
     const books = await Book.find({});
-
     return res.status(200).json({
       count: books.length,
       data: books,
@@ -38,7 +42,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get a single book
+// ✅ Get a single book by ID
 router.get('/:id', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
@@ -49,7 +53,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Update a book
+// ✅ Update a book
 router.put('/:id', async (req, res) => {
   try {
     const { title, author, publishYear } = req.body;
@@ -73,7 +77,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete a book
+// ✅ Delete a book
 router.delete('/:id', async (req, res) => {
   try {
     const deleted = await Book.findByIdAndDelete(req.params.id);
