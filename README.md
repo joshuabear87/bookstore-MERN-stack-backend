@@ -2,6 +2,8 @@
 
 This is the **backend** for **Yomimono**, a minimalist, Japanese-inspired MERN stack book management app. It handles all CRUD operations for books and serves as the API layer for the frontend.
 
+![Yomimono Backend Preview](./public/yomimono-logo.PNG)
+
 ---
 
 ## ⚙️ Features
